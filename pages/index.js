@@ -1,65 +1,119 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import React from "react";
+import Head from "next/head";
+import Input from "../components/input";
+import Button from "../components/button";
+import {
+  differenceInCalendarDays,
+  formatDuration,
+  intervalToDuration,
+} from "date-fns";
+import { tr } from "date-fns/locale";
+import styles from "../styles/Home.module.css";
 
 export default function Home() {
+  const [startDate, setStartDate] = React.useState("");
+  const [days, setDays] = React.useState("");
+  const [duration, setDuration] = React.useState("");
+
+  React.useEffect(() => {
+    const startDate = localStorage.getItem("startDate");
+    if (startDate) {
+      setDiffInCalendarDays(startDate);
+      setDurationInWords(startDate);
+    }
+  }, []);
+
+  const handleSubmit = () => {
+    localStorage.setItem("startDate", startDate);
+    setDiffInCalendarDays(startDate);
+    setDurationInWords(startDate);
+  };
+
+  const setDiffInCalendarDays = (startDate) => {
+    const _diffInCalendarDays = differenceInCalendarDays(
+      new Date(),
+      new Date(startDate)
+    );
+    setDays(_diffInCalendarDays);
+    localStorage.setItem("differenceInCalendarDays", _diffInCalendarDays);
+  };
+
+  const setDurationInWords = (startDate) => {
+    const durationInWords = formatDuration(
+      intervalToDuration({
+        start: new Date(startDate),
+        end: new Date(),
+      }),
+      { locale: tr }
+    );
+    setDuration(durationInWords);
+    localStorage.setItem("durationInWords", durationInWords);
+  };
+
+  const handleReset = () => {
+    localStorage.clear();
+    setStartDate("");
+    setDays("");
+  };
+
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>Kaç gün oldu?</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
+        {days && (
+          <div className={styles.grid}>
+            <div className={styles.card}>
+              <h3>
+                {days} Gün!{" "}
+                {days < 15 ? (
+                  <span>😇</span>
+                ) : days < 30 ? (
+                  <span>😎</span>
+                ) : days < 60 ? (
+                  <span>🤔</span>
+                ) : days < 120 ? (
+                  <span>😕</span>
+                ) : days < 180 ? (
+                  <span>😔</span>
+                ) : days > 180 ? (
+                  <span>🤬</span>
+                ) : (
+                  <span>😤</span>
+                )}
+              </h3>
+              <p>
+                Başvurunuzu yapalı <mark>{duration}</mark> olmuş.
+              </p>
+            </div>
+          </div>
+        )}
+        {!days && (
+          <>
+            <h1 className={styles.title}>Kaç gün oldu?</h1>
+            <p className={styles.description}>Ne zaman başvurdunuz?</p>
+            <form className={styles.form}>
+              <Input
+                value={startDate}
+                type="date"
+                onChange={(e) => setStartDate(e.target.value)}
+              />
+              <Button disabled={!startDate} onClick={handleSubmit}>
+                Hesapla
+              </Button>
+            </form>
+          </>
+        )}
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+      {days && (
+        <footer className={styles.footer}>
+          🍪 Başvuru tarihiniz tarayıcı çerezlerine kayıt edildi. <br />
+          <a onClick={handleReset}>Silmek için lütfen buraya tıklayınız.</a>
+        </footer>
+      )}
     </div>
-  )
+  );
 }
