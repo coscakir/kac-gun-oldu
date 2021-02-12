@@ -93,7 +93,7 @@ export default function Home() {
         )}
         {!days && (
           <>
-            <h1 className={styles.title}>Kaç gün oldu?</h1>
+            <h1 className={styles.title}>Kaç gün oldu hesapla</h1>
             <p className={styles.description}>Ne zaman başvurdunuz?</p>
             <form className={styles.form}>
               <Input
