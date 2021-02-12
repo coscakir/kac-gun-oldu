@@ -110,8 +110,8 @@ export default function Home() {
       </main>
       {days && (
         <footer className={styles.footer}>
-          🍪 Başvuru tarihiniz tarayıcı çerezlerine kayıt edildi. <br />
-          <a onClick={handleReset}>Silmek için lütfen buraya tıklayınız.</a>
+          🍪 Başvuru tarihiniz tarayıcı çerezlerine kayıt edildi.
+          <a onClick={handleReset}>Silmek için buraya tıklayabilirsiniz.</a>
         </footer>
       )}
     </div>
