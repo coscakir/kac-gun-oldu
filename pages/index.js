@@ -6,12 +6,16 @@ import {
   differenceInCalendarDays,
   formatDuration,
   intervalToDuration,
+  isFuture,
+  isValid,
+  isMatch,
 } from "date-fns";
 import { tr } from "date-fns/locale";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
   const [startDate, setStartDate] = React.useState("2020-08-24");
+  const [isValidDate, setIsValidDate] = React.useState(true);
   const [days, setDays] = React.useState("");
   const [duration, setDuration] = React.useState("");
   const today = new Date().toISOString().split("T")[0];
@@ -25,10 +29,20 @@ export default function Home() {
     }
   }, []);
 
-  const handleSubmit = () => {
-    localStorage.setItem("startDate", startDate);
-    setDiffInCalendarDays(startDate);
-    setDurationInWords(startDate);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (
+      isMatch(startDate, "yyyy-MM-dd") &&
+      isValid(new Date(startDate)) &&
+      !isFuture(new Date(startDate))
+    ) {
+      console.log("valid");
+      localStorage.setItem("startDate", startDate);
+      setDiffInCalendarDays(startDate);
+      setDurationInWords(startDate);
+    } else {
+      setIsValidDate(false);
+    }
   };
 
   const setDiffInCalendarDays = (startDate) => {
@@ -55,6 +69,7 @@ export default function Home() {
   const handleReset = () => {
     localStorage.clear();
     setStartDate("2020-08-24");
+    setIsValidDate(true);
     setDays("");
   };
 
@@ -95,7 +110,7 @@ export default function Home() {
         )}
         {!days && (
           <>
-            <h1 className={styles.title}>Kaç gün oldu hesapla</h1>
+            <h1 className={styles.title}>Kaç gün oldu 🙈</h1>
             <p className={styles.description}>Ne zaman başvurdunuz?</p>
             <form className={styles.form}>
               <Input
@@ -106,6 +121,7 @@ export default function Home() {
                 max={today}
                 onChange={(e) => setStartDate(e.target.value)}
                 placeholder="yyyy-mm-dd"
+                isValid={!isValidDate ? false : true}
               />
               <Button disabled={!startDate} onClick={handleSubmit}>
                 Hesapla

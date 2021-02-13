@@ -10,6 +10,21 @@
   min-height: 3rem;
 }
 
+.invalid {
+  border-color: red;
+}
+
+.valid {
+  border-color: #0b0c0c;
+}
+
+.invalidMessage {
+  display: block;
+  color: red;
+  padding-top: 4px;
+  font-size: 0.8rem;
+}
+
 .input::-webkit-calendar-picker-indicator {
   position: absolute;
   right: -10px;
