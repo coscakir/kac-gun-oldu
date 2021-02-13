@@ -105,6 +105,7 @@ export default function Home() {
                 type="date"
                 max={today}
                 onChange={(e) => setStartDate(e.target.value)}
+                placeholder="yyyy-mm-dd"
               />
               <Button disabled={!startDate} onClick={handleSubmit}>
                 Hesapla
