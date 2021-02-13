@@ -4,12 +4,13 @@
   background-color: #00703c;
   box-shadow: 0 2px 0 #002d18;
   border: 0;
-  padding: 0.67rem 1rem;
+  padding: 1rem 2rem;
   color: white;
   cursor: pointer;
   text-align: center;
   appearance: none;
   transition: all 0.2s ease;
+  font-size: 1.5rem;
 }
 
 .button:hover {

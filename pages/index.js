@@ -11,13 +11,14 @@ import { tr } from "date-fns/locale";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
-  const [startDate, setStartDate] = React.useState("");
+  const [startDate, setStartDate] = React.useState("2020-08-24");
   const [days, setDays] = React.useState("");
   const [duration, setDuration] = React.useState("");
 
   React.useEffect(() => {
     const startDate = localStorage.getItem("startDate");
     if (startDate) {
+      setStartDate(startDate);
       setDiffInCalendarDays(startDate);
       setDurationInWords(startDate);
     }
@@ -52,7 +53,7 @@ export default function Home() {
 
   const handleReset = () => {
     localStorage.clear();
-    setStartDate("");
+    setStartDate("2020-08-24");
     setDays("");
   };
 
@@ -97,6 +98,8 @@ export default function Home() {
             <p className={styles.description}>Ne zaman başvurdunuz?</p>
             <form className={styles.form}>
               <Input
+                name="date"
+                id="date"
                 value={startDate}
                 type="date"
                 onChange={(e) => setStartDate(e.target.value)}
@@ -110,7 +113,10 @@ export default function Home() {
       </main>
       {days && (
         <footer className={styles.footer}>
-          🍪 Başvuru tarihiniz tarayıcı çerezlerine kayıt edildi.
+          <span>
+            🍪 Başvuru tarihiniz ({startDate}) olarak tarayıcı çerezlerine kayıt
+            edildi.
+          </span>
           <a onClick={handleReset}>Silmek için buraya tıklayabilirsiniz.</a>
         </footer>
       )}
