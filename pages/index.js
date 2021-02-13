@@ -14,6 +14,7 @@ export default function Home() {
   const [startDate, setStartDate] = React.useState("2020-08-24");
   const [days, setDays] = React.useState("");
   const [duration, setDuration] = React.useState("");
+  const today = new Date().toISOString().split("T")[0];
 
   React.useEffect(() => {
     const startDate = localStorage.getItem("startDate");
@@ -102,6 +103,7 @@ export default function Home() {
                 id="date"
                 value={startDate}
                 type="date"
+                max={today}
                 onChange={(e) => setStartDate(e.target.value)}
               />
               <Button disabled={!startDate} onClick={handleSubmit}>
