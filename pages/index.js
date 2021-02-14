@@ -92,14 +92,16 @@ export default function Home() {
                   <span>😎</span>
                 ) : days < 60 ? (
                   <span>🤔</span>
-                ) : days < 120 ? (
+                ) : days < 90 ? (
                   <span>😕</span>
-                ) : days < 180 ? (
+                ) : days < 120 ? (
                   <span>😔</span>
-                ) : days > 180 ? (
-                  <span>🤬</span>
-                ) : (
+                ) : days < 150 ? (
                   <span>😤</span>
+                ) : days < 180 ? (
+                  <span>😡</span>
+                ) : (
+                  <span>🤬</span>
                 )}
               </h3>
               <p>
