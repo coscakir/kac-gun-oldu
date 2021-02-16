@@ -2,7 +2,7 @@ export default (req, res) => {
   const falSonuclari = [
     "- bak burda pikaçu benzeri birşey var görüyor musun, evet ya resmen pikaçu bu... - eee, ne demek yani şimdi bu? - valla, biri seni seçecek heralde, anlamı bu.",
     "- bir köpek var ama balık gibi kafası. - hani nerde; köpek mi, balık mı? - hmm... köpek balığı. ?!vize?!",
-    "- yunus çıktı burda. hmm yunus tatil demek yaaani vizen yazın gelecekç 🎉",
+    "- yunus çıktı burda. hmm yunus tatil demek yaaani vizen yazın gelecek. 🎉",
     "- gelecek ayin beşinci gününün şafağında mailine bak. bekledigin haber gelmiş olacak.",
     "...bak bak şurda işte... göz var sende vizeyi boşver şimdi. -kız kahve den sonra sana bi kurşun dökelim",
     "- sana iki vakite kadar bir yol var, ayrica haber alacaksin, elline önemli bir belge geciyor, kismetlerin bol, elline para gececek, evleniyorsun, mutlu bir yuva ve iyi bir işe sahip oluyorsun...",
