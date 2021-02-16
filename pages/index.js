@@ -11,6 +11,7 @@ import {
   isMatch,
 } from "date-fns";
 import { tr } from "date-fns/locale";
+import delay from "../utils/delay";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
@@ -80,6 +81,7 @@ export default function Home() {
 
   const falimaBak = async () => {
     setFal("bakiyorum.. sakin ol.. hmm. kiz bak, goruyor musun?");
+    await delay(2000);
     const res = await fetch("api/fal");
     const data = await res.json();
     setFal(data.sonuc);
