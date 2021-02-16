@@ -14,7 +14,7 @@ export default function FalBak() {
         setFal(_fal);
       }
     } catch (e) {
-      localStorage.clear();
+      localStorage.removeItem("fal");
     }
   }, []);
 
