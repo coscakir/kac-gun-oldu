@@ -7,7 +7,7 @@ export default (req, res) => {
     "...bak bak şurda işte... göz var sende vizeyi boşver şimdi. -kız kahve den sonra sana bi kurşun dökelim",
     "- sana iki vakite kadar bir yol var, ayrica haber alacaksin, elline önemli bir belge geciyor, kismetlerin bol, elline para gececek, evleniyorsun, mutlu bir yuva ve iyi bir işe sahip oluyorsun...",
     "- kiz vallahi sende hiç birşey görmüyorum. sende hersey süper, hic merak etme.",
-    "- sana iki yol var; biri uzun biri kisa; uzunu hayat yolu, kisasi ayak yolu",
+    "- sana iki yol var; biri uzun biri kisa; uzunu vize yolu, kisasi ayak yolu",
     "- e ne görüyosun? - kahveee!?",
     "- ahtapot var bak kocaman, 4 ayağı çıkmış, kaç tane var ki normalde kız? neyse işte ayaklar tamamlanınca müjden var senin",
     "- 29 vakte kadar vizen gelicek.. hımm sen ya topuklu ayakkabı alıcaksın ya da italya'ya gidiceksin..",
