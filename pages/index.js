@@ -12,6 +12,7 @@ import {
 } from "date-fns";
 import { tr } from "date-fns/locale";
 import delay from "../utils/delay";
+import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
@@ -174,6 +175,14 @@ export default function Home() {
             tarayıcı çerezlerine kayıt edildi.
           </span>
           <a onClick={handleReset}>Silmek için buraya tıklayabilirsiniz.</a>
+          <a
+            href="https://github.com/coskuncakir/kac-gun-oldu"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.github}
+          >
+            <Image src="/github.svg" alt="GitHub" width={24} height={24} />
+          </a>
         </footer>
       )}
     </div>

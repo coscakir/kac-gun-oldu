@@ -23,7 +23,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  line-height: 2;
+  grid-gap: 0.5rem;
   text-align: center;
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -99,6 +99,10 @@
   margin: 0;
   font-size: 1.25rem;
   line-height: 1.5;
+}
+
+.github {
+  display: flex;
 }
 
 @media (max-width: 600px) {
