@@ -8,9 +8,13 @@ export default function FalBak() {
   const [fal, setFal] = React.useState({});
 
   React.useEffect(() => {
-    const _fal = JSON.parse(localStorage.getItem("fal"));
-    if (_fal) {
-      setFal(_fal);
+    try {
+      const _fal = JSON.parse(localStorage.getItem("fal"));
+      if (_fal) {
+        setFal(_fal);
+      }
+    } catch (e) {
+      localStorage.clear();
     }
   }, []);
 
