@@ -19,14 +19,14 @@
 .footer {
   width: 100%;
   border-top: 1px solid #eaeaea;
-  display: flex;
+  display: grid;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  grid-gap: 0.5rem;
   text-align: center;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  flex-direction: column;
+  grid-gap: 1rem;
+  text-align: center;
+  padding: 2rem;
 }
 
 .footer a {
@@ -59,13 +59,9 @@
 }
 
 .grid {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
   max-width: 600px;
   grid-gap: 2rem;
-  flex-direction: column;
 }
 
 .card {
@@ -103,6 +99,8 @@
 
 .github {
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (max-width: 600px) {
