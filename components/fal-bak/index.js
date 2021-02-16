@@ -2,24 +2,25 @@ import React from "react";
 import delay from "../../utils/delay";
 import Button from "../button";
 import Card from "../card";
+import styles from "./fal-bak.module.css";
 
 export default function FalBak() {
-  const [fal, setFal] = React.useState("");
+  const [fal, setFal] = React.useState({});
 
   React.useEffect(() => {
-    const _fal = localStorage.getItem("fal");
+    const _fal = JSON.parse(localStorage.getItem("fal"));
     if (_fal) {
       setFal(_fal);
     }
   }, []);
 
   const handleSubmit = async () => {
-    setFal("bakiyorum.. sakin ol.. hmm. kiz bak, goruyor musun?");
+    setFal({ replik: "bakiyorum.. sakin ol.. hmm. kiz bak, goruyor musun?" });
     await delay(2000);
     const res = await fetch("api/fal-bak");
     const data = await res.json();
     setFal(data.sonuc);
-    localStorage.setItem("fal", data.sonuc);
+    localStorage.setItem("fal", JSON.stringify(data.sonuc));
   };
 
   return (
@@ -27,7 +28,7 @@ export default function FalBak() {
       <h3>
         Vize Falı <span>☕️</span>
       </h3>
-      {!fal && (
+      {!fal.replik && (
         <>
           <p style={{ marginBottom: "1rem" }}>
             Vizen ne zaman gelir anlamanın tek yolu var.
@@ -37,9 +38,12 @@ export default function FalBak() {
           </Button>
         </>
       )}
-      {fal && (
+      {fal.replik && (
         <>
-          <p>{fal}</p>
+          <p>{fal.replik}</p>
+          {fal.falci && (
+            <span className={styles.falci}>falcı: {fal.falci}</span>
+          )}
         </>
       )}
     </Card>

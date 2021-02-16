@@ -7,6 +7,7 @@ import {
   intervalToDuration,
 } from "date-fns";
 import { tr } from "date-fns/locale";
+import useInterval from "../../utils/use-interval";
 
 export default function DiffCard() {
   const { applicationDate } = React.useContext(StoreContext);
@@ -19,6 +20,12 @@ export default function DiffCard() {
       setDurationInWords(applicationDate);
     }
   }, []);
+
+  useInterval(() => {
+    if (applicationDate) {
+      setDurationInWords(applicationDate);
+    }
+  }, 1000);
 
   const setDiffInCalendarDays = (applicationDate) => {
     const _diffInCalendarDays = differenceInCalendarDays(
