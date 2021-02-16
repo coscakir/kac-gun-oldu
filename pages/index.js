@@ -18,6 +18,7 @@ export default function Home() {
   const [isValidDate, setIsValidDate] = React.useState(true);
   const [days, setDays] = React.useState("");
   const [duration, setDuration] = React.useState("");
+  const [fal, setFal] = React.useState("");
   const today = new Date().toISOString().split("T")[0];
 
   React.useEffect(() => {
@@ -26,6 +27,9 @@ export default function Home() {
       setStartDate(startDate);
       setDiffInCalendarDays(startDate);
       setDurationInWords(startDate);
+    }
+    if (localStorage.getItem("fal")) {
+      setFal(localStorage.getItem("fal"));
     }
   }, []);
 
@@ -71,6 +75,15 @@ export default function Home() {
     setStartDate("2020-08-24");
     setIsValidDate(true);
     setDays("");
+    setFal("");
+  };
+
+  const falimaBak = async () => {
+    setFal("bakiyorum.. sakin ol.. hmm. kiz bak, goruyor musun?");
+    const res = await fetch("api/fal");
+    const data = await res.json();
+    setFal(data.sonuc);
+    localStorage.setItem("fal", data.sonuc);
   };
 
   return (
@@ -108,6 +121,26 @@ export default function Home() {
                 Başvurunuzu yapalı <mark>{duration}</mark> olmuş.
               </p>
             </div>
+            <div className={styles.card}>
+              <h3>
+                Vize Falı <span>☕️</span>
+              </h3>
+              {!fal && (
+                <>
+                  <p style={{ marginBottom: "1rem" }}>
+                    Vizen ne zaman gelir anlamanın tek yolu var.
+                  </p>
+                  <Button size="sm" onClick={falimaBak}>
+                    Falima bak
+                  </Button>
+                </>
+              )}
+              {fal && (
+                <>
+                  <p>{fal}</p>
+                </>
+              )}
+            </div>
           </div>
         )}
         {!days && (
@@ -135,8 +168,8 @@ export default function Home() {
       {days && (
         <footer className={styles.footer}>
           <span>
-            🍪 Başvuru tarihiniz ({startDate}) olarak tarayıcı çerezlerine kayıt
-            edildi.
+            🍪 Başvuru tarihiniz ({startDate}) {fal ? "ve faliniz" : null}{" "}
+            tarayıcı çerezlerine kayıt edildi.
           </span>
           <a onClick={handleReset}>Silmek için buraya tıklayabilirsiniz.</a>
         </footer>

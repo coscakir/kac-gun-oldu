@@ -59,14 +59,17 @@
 }
 
 .grid {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 800px;
-  grid-gap: 1rem;
+  max-width: 600px;
+  grid-gap: 2rem;
+  flex-direction: column;
 }
 
 .card {
+  width: 100%;
   padding: 1.5rem;
   text-align: left;
   color: inherit;
@@ -100,8 +103,6 @@
 
 @media (max-width: 600px) {
   .grid {
-    width: 100%;
-    flex-direction: column;
     padding: 2rem;
   }
 }

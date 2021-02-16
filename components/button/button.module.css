@@ -21,3 +21,9 @@
 .button:disabled {
   opacity: 0.7;
 }
+
+.sm {
+  height: auto;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
