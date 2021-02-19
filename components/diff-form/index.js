@@ -40,7 +40,7 @@ export default function DiffForm() {
           placeholder="yyyy-mm-dd"
           isValid={!isValidDate ? false : true}
         />
-        <Button onClick={handleSubmit}>Hesapla</Button>
+        <Button onClick={handleSubmit}>Enter</Button>
       </form>
     </>
   );

@@ -45,9 +45,7 @@ export default function FalBak() {
       {fal.replik && (
         <>
           <p>{fal.replik}</p>
-          {fal.falci && (
-            <span className={styles.falci}>falcı: {fal.falci}</span>
-          )}
+          {fal.falci && <span className={styles.falci}>- {fal.falci}</span>}
         </>
       )}
     </Card>
